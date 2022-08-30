@@ -1,22 +1,15 @@
-import React from 'react'
-import logo from './assets/logo.svg'
+import React, { useEffect } from 'react'
+import getToken from './spotify/auth'
 
 function App() {
+  useEffect(() => {
+    getToken()
+    
+  } , [])
+
   return (
-    <header className="App-header bg-slate-200">
-      <img src={logo} className="w-52" alt="logo" />
-      <p>
-            Edit <code className='font-extralight text-black'>src/App.tsx</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-            Learn React
-      </a>
-    </header>
+    <div>
+    </div>
   )
 }
 

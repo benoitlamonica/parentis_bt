@@ -1,1 +1,1 @@
-# Bootstrap React / Tailwind / Ts
+# Welcome to Parentis BlindTest
