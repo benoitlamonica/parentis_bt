@@ -23,7 +23,7 @@ export function useRequestAccessToken(callback: (data: AccessToken) => void) {
   const params = new URLSearchParams({
     grant_type: 'authorization_code',
     code: authCode,
-    redirect_uri: 'http://localhost:3000/callback',
+    redirect_uri: 'https://parentis-bt.netlify.app/callback',
     client_id: $credentials.client_id,
     code_verifier: localStorage.getItem('codeVerifier') as string,
   })
