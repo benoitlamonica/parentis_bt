@@ -1,4 +1,4 @@
 import React from 'react'
-export default function Button({ children, onClick } : { children: React.ReactNode, onClick?: React.MouseEventHandler }) {
-  return (<button className=" bg-blue-300 p-2 rounded-md text-white" onClick={onClick}>{children}</button>)
+export default function Button({ children, onClick, className = '' } : { children: React.ReactNode, onClick?: React.MouseEventHandler, className?: string }) {
+  return (<button className={'bg-blue-300 p-2 rounded-md text-white ' + className} onClick={onClick}>{children}</button>)
 }

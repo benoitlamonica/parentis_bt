@@ -1,7 +1,7 @@
-import App from '../App'
 import Welcome from '../pages/Welcome'
 import React from 'react'
 import Game from '../pages/Game'
+import Auth from '../pages/Auth'
 
 export type Route = {
     path: string,
@@ -12,7 +12,7 @@ export type Route = {
 export default [
   {
     path: '/',
-    component: <App/>,
+    component: <Auth />,
     name: 'Home',
   },
   {

@@ -14,7 +14,7 @@ export default function Welcome() {
   const [readyToPlay, setReadyToPlay] = React.useState(false)
   const navigate = useNavigate()
   const $api = useApi()
-  const playlistId = '6ctYnwYajYm1W6IA78uAdQ'
+  const playlistId = '2IamgqJjhiz48fBY9W0kpa'
 
   useRequestAccessToken((data) => {
     console.log(data)
@@ -44,10 +44,10 @@ export default function Welcome() {
         
   return (
     <div>
-        Hey
+      <h1 className='font-bold text-3xl text-blue-600 text-center m-6'>Blind Test</h1>
       <strong>{authCode}</strong>
       <AddPlayers/>
-      <Button onClick={() => setReadyToPlay(true)}>Play</Button>
+      <Button className = 'text-2xl font-bold mx-auto block text-white px-10 py-5 my-10' onClick={() => setReadyToPlay(true)}>Play</Button>
     </div>
   )
 }

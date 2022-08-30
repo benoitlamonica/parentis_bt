@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react'
-import getToken from './spotify/auth'
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { RecoilRoot } from 'recoil'
+import RouteList from './router'
 
 function App() {
-  useEffect(() => {
-    getToken()
-    
-  } , [])
-
   return (
-    <div>
-    </div>
+    <React.StrictMode>
+      <RecoilRoot>
+        <BrowserRouter>
+          <RouteList/>
+        </BrowserRouter>
+      </RecoilRoot>
+    </React.StrictMode>
   )
 }
 
