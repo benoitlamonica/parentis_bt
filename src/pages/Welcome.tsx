@@ -66,7 +66,7 @@ export default function Welcome() {
   }, [playlist, readyToPlay, players])
 
   return (
-    <div className="bg-blue-400 p-5 text-white sm:mx-auto sm:rounded-md sm:w-1/2 shadow-md shadow-blue-600 min-h-screen">
+    <div className="bg-blue-400 p-5 text-white sm:mx-auto sm:rounded-md sm:w-1/2 shadow-md shadow-blue-600">
       <h1 className="text-5xl text-white font-light text-center my-4 uppercase">
         Blind Test
       </h1>
