@@ -1,7 +1,12 @@
 import React from 'react'
 
-export default function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
+export default function Input(
+  props: React.InputHTMLAttributes<HTMLInputElement>
+) {
   return (
-    <input className=' p-1 text-lg font-light text-blue-600' {...props}/>
+    <input
+      className="p-2 text-lg font-light text-blue-600 rounded block"
+      {...props}
+    />
   )
 }
