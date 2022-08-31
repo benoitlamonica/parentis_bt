@@ -10,7 +10,11 @@ export default function Game() {
   const [players, setPlayers] = useRecoilState(playersState)
   const [choosenTrack, setChoosenTrack] = React.useState<Playlist | null>(null)
   const [pointAdded, setPointAdded] = React.useState(0)
-  const [alreadyChoosenTracks, setAlreadyChoosenTracks] = React.useState<Playlist[]>([])
+  const [isTitleShown, setIsTitleShown] = React.useState(true)
+  const [isArtistShown, setIsArtistShown] = React.useState(true)
+
+  // To do
+  // const [alreadyChoosenTracks, setAlreadyChoosenTracks] = React.useState<Playlist[]>([])
 
   const addPoint = (id: number) => {
     const newPlayers = players.map((player: Player, key: number) => {
@@ -35,32 +39,34 @@ export default function Game() {
   useEffect(() => {
     if(pointAdded === 2) {
       setPointAdded(0)
+      setIsArtistShown(true)
+      setIsTitleShown(true)
       changeTrack()
     }
   }, [pointAdded])
 
   return (
-    <div className='m-4 p-8 bg-blue-100 shadow-md shadow-blue-600 rounded-xl'>
-      <h1 className='text-3xl font-bold text-center mb-8'>Blind Test</h1>
+    <div className='sm:m-4 p-4 bg-blue-400 shadow-md shadow-blue-600 sm:rounded-xl'>
+      <h1 className='text-3xl font-bold text-center mb-8 text-white uppercase'>Blind Test</h1>
       {choosenTrack ? <Track url={choosenTrack.url} /> : <strong>Loading your track</strong>}
-      <div className="grid grid-cols-2 m-8">
-        <div>
-          <strong className='block text-center'>Titre</strong>
+      <div className="grid grid-col-1 sm:grid-cols-2 mt-8">
+        <div className={isTitleShown ? 'block' : 'hidden'}>
+          <strong className='block text-center text-white'>Titre</strong>
           <div className='flex flex-row gap-2 m-4 justify-center'>
             {players.map(({name}: Player, id: number) => (
               <div key={name}>
-                <Button onClick={() => addPoint(id)}>{name}</Button>
+                <Button onClick={() => {addPoint(id); setIsTitleShown(false)}}>{name}</Button>
               </div>
             ))}
           </div>
         </div>
 
-        <div>
-          <strong className='block text-center'>Artiste</strong>
+        <div className={isArtistShown ? 'block' : 'hidden'}>
+          <strong className='block text-center text-white'>Artiste</strong>
           <div className='flex flex-row gap-2 m-4 justify-center'>
             {players.map(({name}: Player, id: number) => (
               <div key={name}>
-                <Button onClick={() => addPoint(id)}>{name}</Button>
+                <Button onClick={() => {addPoint(id); setIsArtistShown(false)}}>{name}</Button>
               </div>
             ))}
           </div>
@@ -71,8 +77,8 @@ export default function Game() {
         <Button onClick={changeTrack}>Change track</Button>
       </div>
 
-      <div className='grid grid-cols-2 w-1/2 mx-auto gap-2'>
-        {players.map(({name, score}: Player, id: number) => (
+      <div className='grid grid-cols-1 sm:grid-cols-2 w-1/2 mx-auto gap-2'>
+        {players.map(({name, score}: Player) => (
           <div key={name} className='bg-blue-600 text-white p-4'>
             <strong>{name}</strong> : {score}
           </div>
