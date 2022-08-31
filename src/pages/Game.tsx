@@ -50,65 +50,66 @@ export default function Game() {
   }, [pointAdded])
 
   return (
-    <div className="p-4 sm:mx-auto sm:w-1/2 bg-blue-400 shadow-md shadow-blue-600 sm:rounded-xl">
-      <h1 className="text-5xl font-light text-center mb-8 text-white uppercase">
-        Blind Test
-      </h1>
-
-      {choosenTrack ? (
-        <Track url={choosenTrack.url} />
-      ) : (
-        <strong>Loading your track</strong>
-      )}
-
-      <div className="grid grid-col-1 sm:grid-cols-2 mt-8">
-        <div className={isTitleShown ? 'block' : 'hidden'}>
-          <strong className="block text-center text-white">Titre</strong>
-          <div className="flex flex-row gap-2 m-4 justify-center">
-            {players.map(({ name }: Player, id: number) => (
-              <div key={name}>
-                <Button
-                  onClick={() => {
-                    addPoint(id)
-                    setIsTitleShown(false)
-                  }}
-                >
-                  {name}
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className={isArtistShown ? 'block' : 'hidden'}>
-          <strong className="block text-center text-white">Artiste</strong>
-          <div className="flex flex-row gap-2 m-4 justify-center">
-            {players.map(({ name }: Player, id: number) => (
-              <div key={name}>
-                <Button
-                  onClick={() => {
-                    addPoint(id)
-                    setIsArtistShown(false)
-                  }}
-                >
-                  {name}
-                </Button>
-              </div>
-            ))}
-          </div>
+    <div className='flex flex-col-reverse sm:flex-row gap-4 items-center justify-center p-1 sm:px-4'>
+      <div className='w-full sm:w-1/3 mx-auto'>
+        <div className='text-center font-bold'>Scores</div>
+        <div className="grid grid-cols-1 mx-auto gap-1 sm:gap-2">
+          {filteredPlayers.map(({ name, score }: Player) => (
+            <div key={name} className="bg-slate-600 text-white p-4 sm:rounded-md shadow-slate-900 shadow-sm w-full">
+              <strong>{name}</strong> : <span className='text-pink-300 font-extrabold'>{score}</span>
+            </div>
+          ))}
         </div>
       </div>
-
-      <div className="my-8  mx-auto w-fit">
-        <Button onClick={changeTrack}>Change track</Button>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 w-1/2 mx-auto gap-2">
-        {filteredPlayers.map(({ name, score }: Player) => (
-          <div key={name} className="bg-blue-600 text-white p-4">
-            <strong>{name}</strong> : {score}
+      
+      <div className="p-4 sm:mx-auto w-full sm:w-2/3 bg-blue-400 shadow-md shadow-blue-600 sm:rounded-xl">
+        <h1 className="text-5xl font-light text-center mb-8 text-white uppercase">
+            Blind Test
+        </h1>
+        {choosenTrack ? (
+          <Track url={choosenTrack.url} />
+        ) : (
+          <strong>Loading your track</strong>
+        )}
+        <div className="grid grid-col-1 sm:grid-cols-2 mt-8">
+          <div className={isTitleShown ? 'block' : 'hidden'}>
+            <strong className="block text-center text-white">Titre</strong>
+            <div className="flex flex-row flex-wrap gap-2 m-4 justify-center">
+              {players.map(({ name }: Player, id: number) => (
+                <div key={name}>
+                  <Button
+                    onClick={() => {
+                      addPoint(id)
+                      setIsTitleShown(false)
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+          <div className={isArtistShown ? 'block' : 'hidden'}>
+            <strong className="block text-center text-white">Artiste</strong>
+            <div className="flex flex-row flex-wrap gap-2 m-4 justify-center">
+              {players.map(({ name }: Player, id: number) => (
+                <div key={name}>
+                  <Button
+                    onClick={() => {
+                      addPoint(id)
+                      setIsArtistShown(false)
+                    }}
+                  >
+                    {name}
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="my-8  mx-auto w-fit">
+          <Button onClick={changeTrack}>Change track</Button>
+        </div>
       </div>
     </div>
   )

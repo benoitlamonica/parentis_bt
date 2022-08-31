@@ -26,7 +26,7 @@ export default function AddPlayers() {
           Players :{' '}
           {players.map((player: Player, i: number) => (
             <strong
-              className="block mb-4 bg-slate-50 w-fit px-4 text-blue-600"
+              className="block mb-4 bg-slate-50 w-52 px-4 py-1 text-blue-400 rounded-md shadow-slate-400 shadow-sm font-medium"
               key={i}
             >
               {player.name}
@@ -45,7 +45,7 @@ export default function AddPlayers() {
 
   return (
     <div className="p-5 text-white">
-      <div className='mb-4'>
+      <div className="mb-4">
         Add player :{' '}
         <div className="flex">
           <Input type="text" onInput={handleInputChange} value={name} />{' '}

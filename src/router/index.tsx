@@ -4,7 +4,7 @@ import routes from './routes'
 
 export default function RouteList() {
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center min-h-screen">
       <div className='bg-slate-100 w-full'>
         <Routes>
           {routes.map(({ path, component }) => (

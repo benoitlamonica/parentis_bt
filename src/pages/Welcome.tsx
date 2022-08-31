@@ -66,14 +66,14 @@ export default function Welcome() {
   }, [playlist, readyToPlay, players])
 
   return (
-    <div className="bg-blue-400 p-5 text-white sm:mx-auto sm:rounded-md sm:w-1/2 shadow-md shadow-blue-600">
+    <div className="bg-blue-400 p-5 text-white sm:mx-auto sm:rounded-md sm:w-1/2 shadow-md shadow-blue-600 min-h-screen">
       <h1 className="text-5xl text-white font-light text-center my-4 uppercase">
         Blind Test
       </h1>
       <strong>{authCode}</strong>
       <AddPlayers />
       <Button
-        className="text-2xl mx-auto block text-white px-10 my-1"
+        className="text-2xl mx-auto block text-white px-10 my-1 font-bold"
         onClick={() => setReadyToPlay(true)}
       >
         Play
