@@ -50,15 +50,17 @@ export default function Game() {
   }, [pointAdded])
 
   return (
-    <div className="sm:my-4 p-4 sm:mx-auto sm:w-1/2 bg-blue-400 shadow-md shadow-blue-600 sm:rounded-xl">
+    <div className="p-4 sm:mx-auto sm:w-1/2 bg-blue-400 shadow-md shadow-blue-600 sm:rounded-xl">
       <h1 className="text-5xl font-light text-center mb-8 text-white uppercase">
         Blind Test
       </h1>
+
       {choosenTrack ? (
         <Track url={choosenTrack.url} />
       ) : (
         <strong>Loading your track</strong>
       )}
+
       <div className="grid grid-col-1 sm:grid-cols-2 mt-8">
         <div className={isTitleShown ? 'block' : 'hidden'}>
           <strong className="block text-center text-white">Titre</strong>

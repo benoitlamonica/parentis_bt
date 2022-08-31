@@ -73,7 +73,7 @@ export default function Welcome() {
       <strong>{authCode}</strong>
       <AddPlayers />
       <Button
-        className="text-2xl font-bold mx-auto block text-white px-10 py-5 my-10"
+        className="text-2xl mx-auto block text-white px-10 my-1"
         onClick={() => setReadyToPlay(true)}
       >
         Play
