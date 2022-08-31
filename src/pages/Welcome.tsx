@@ -5,19 +5,28 @@ import { useRecoilState } from 'recoil'
 import AddPlayers from '../components/AddPlayers'
 import Button from '../components/Button'
 import { useApi, useRequestAccessToken } from '../spotify'
-import { authCodeState, Playlist, playlistState, tokenState } from '../store'
+import { playlistId } from '../static'
+import { authCodeState, playersState, Playlist, playlistState, tokenState } from '../store'
+
+type ItemInfoTrack = {
+    track: {
+        external_urls: {
+            spotify: string
+        },
+        name: string,
+    }
+}
 
 export default function Welcome() {
   const [authCode, setAuth] = useRecoilState(authCodeState)
   const [token, setToken] = useRecoilState(tokenState)
   const [playlist, setPlaylist] = useRecoilState(playlistState)
+  const [players] = useRecoilState(playersState)
   const [readyToPlay, setReadyToPlay] = React.useState(false)
   const navigate = useNavigate()
   const $api = useApi()
-  const playlistId = '2IamgqJjhiz48fBY9W0kpa'
 
   useRequestAccessToken((data) => {
-    console.log(data)
     setToken(data)
   })
 
@@ -29,16 +38,16 @@ export default function Welcome() {
   useEffect(() => {
     if (token) {
       $api.get(`/playlists/${playlistId}/tracks`).then(({data}) => {
-        setPlaylist(data.items.map(({track}: any) => ({url : track.external_urls.spotify, name: track.name} as Playlist)))
+        setPlaylist(data.items.map(({track}: ItemInfoTrack) => ({url : track.external_urls.spotify, name: track.name} as Playlist)))
       })
     }
   }, [token])
 
   useEffect(() => {
-    if (playlist && readyToPlay) {
+    if (playlist && readyToPlay && players.length > 0) {
       navigate('/game')
     }
-  } , [playlist, readyToPlay])
+  } , [playlist, readyToPlay, players])
 
 
         

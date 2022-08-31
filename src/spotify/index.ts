@@ -3,12 +3,20 @@ import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { authCodeState, tokenState } from '../store'
 
+type AccessToken = {
+  access_token: string,
+  token_type: string,
+  scope: string,
+  expires_in: number,
+  refresh_token: string,
+}
+
 export const $credentials = {
-  client_id: '5ef14437e8f44f5b98f0e2e53ca88c8e',
-  client_secret: '0d77bc4be9184b108f1f5f680a4e5ef7',
+  client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID as string,
+  client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET as string,
 } 
 
-export function useRequestAccessToken(callback: (data: any) => void) {
+export function useRequestAccessToken(callback: (data: AccessToken) => void) {
   const [authCode, setAuth] = useRecoilState(authCodeState)
 
   const url = 'https://accounts.spotify.com/api/token'

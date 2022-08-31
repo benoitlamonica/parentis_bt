@@ -47,8 +47,7 @@ async function codeChallenge() {
 
 export default async function getToken() {
   const code_challenge = await codeChallenge()
-  console.log(code_challenge)
-  
+
   window.location = generateUrlWithSearchParams(
     'https://accounts.spotify.com/authorize',
     {

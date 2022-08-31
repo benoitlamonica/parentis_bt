@@ -19,19 +19,27 @@ export default function AddPlayers() {
     setName('')
   }
 
+  const showPlayers = () => {
+    if(players.length > 0) return (
+      <div>
+        Players : {players.map((player: Player, i: number) => <strong className="block my-4 bg-slate-50 w-fit px-4 text-blue-600" key={i}>{player.name}</strong>)}
+      </div>
+    )
+
+    return ('No players yet')
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const playerName = e.target.value
     setName(playerName)
   }
 
   return (
-    <div className=' bg-blue-600 p-5 text-white mx-10 rounded-md'>
+    <div className='bg-blue-400 p-5 text-white sm:mx-10 sm:rounded-md'>
       <div>
         Add player : <Input type="text" onInput={handleInputChange} value={name} /> <Button onClick={addPlayer}>Add</Button>
       </div>
-      <div>
-        Players : {players.map((player: Player, i: number) => <strong className="block my-4 bg-slate-50 w-fit px-4 text-blue-600" key={i}>{player.name}</strong>)}
-      </div>
+      {showPlayers()}
     </div>
   )
 }
