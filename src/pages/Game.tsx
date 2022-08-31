@@ -55,7 +55,7 @@ export default function Game() {
         <div className='text-center font-bold'>Scores</div>
         <div className="grid grid-cols-1 mx-auto gap-1 sm:gap-2">
           {filteredPlayers.map(({ name, score }: Player) => (
-            <div key={name} className="bg-slate-600 text-white p-4 sm:rounded-md shadow-slate-900 shadow-sm w-full">
+            <div key={name} className="bg-blue-100 text-slate-800 font-light p-4 sm:rounded-md shadow-blue-200 shadow-sm w-full">
               <strong>{name}</strong> : <span className='text-pink-300 font-extrabold'>{score}</span>
             </div>
           ))}
