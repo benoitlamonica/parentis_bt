@@ -30,10 +30,10 @@ export default function AddPlayers() {
           Players :{' '}
           {players.map((player: Player, i: number) => (
             <strong
-              className="block mb-4 bg-slate-50 w-52 px-4 py-1 text-blue-400 rounded-md shadow-slate-400 shadow-sm font-medium"
+              className="flex items-center justify-between mb-4 bg-slate-50 w-52 px-2 py-1 text-blue-400 rounded-md shadow-slate-400 shadow-sm font-medium"
               key={i}
             >
-              {player.name}
+              <span>{player.name}</span>
               <div className='px-2 ml-2 bg-slate-300 inline-block text-slate-900 cursor-pointer' onClick={() => deletePlayer(i)}>
                 Delete
               </div>
