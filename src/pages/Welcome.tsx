@@ -62,11 +62,14 @@ export default function Welcome() {
   useEffect(() => {
     if (playlist && readyToPlay && players.length > 0) {
       navigate('/game')
+      return
     }
+    
+    setReadyToPlay(false)
   }, [playlist, readyToPlay, players])
 
   return (
-    <div className="bg-blue-400 p-5 text-white sm:mx-auto sm:rounded-md sm:w-1/2 shadow-md shadow-blue-600">
+    <div className="bg-slate-700 p-5 text-white md:mx-auto md:rounded-md">
       <h1 className="text-5xl text-white font-light text-center my-4 uppercase">
         Blind Test
       </h1>

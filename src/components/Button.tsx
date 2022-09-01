@@ -11,7 +11,7 @@ export default function Button({
   return (
     <button
       className={
-        'bg-blue-300 p-2 rounded-md text-white hover:bg-blue-500 transition-colors font-light shadow-sm shadow-blue-500 ' +
+        'bg-slate-500 p-2 rounded-md text-white hover:bg-blue-500 transition-colors font-light shadow-sm shadow-slate-900 ' +
         className
       }
       onClick={onClick}

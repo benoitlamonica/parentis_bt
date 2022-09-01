@@ -19,6 +19,10 @@ export default function AddPlayers() {
     setName('')
   }
 
+  const deletePlayer = (id: number) => {
+    setPlayers(players.filter((player: Player, key: number) => key !== id))
+  }
+
   const showPlayers = () => {
     if (players.length > 0)
       return (
@@ -30,6 +34,9 @@ export default function AddPlayers() {
               key={i}
             >
               {player.name}
+              <div className='px-2 ml-2 bg-slate-300 inline-block text-slate-900 cursor-pointer' onClick={() => deletePlayer(i)}>
+                Delete
+              </div>
             </strong>
           ))}
         </div>
