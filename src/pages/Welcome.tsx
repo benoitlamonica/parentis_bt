@@ -5,14 +5,15 @@ import { useRecoilState } from 'recoil'
 import AddPlayers from '../components/AddPlayers'
 import Button from '../components/Button'
 import { useApi, useRequestAccessToken } from '../spotify'
-import { playlistId } from '../static'
 import {
   authCodeState,
   playersState,
   Playlist,
+  playlistIdState,
   playlistState,
   tokenState,
 } from '../store'
+import SetPlaylist from '../components/SetPlaylist'
 
 type ItemInfoTrack = {
   track: {
@@ -27,6 +28,7 @@ export default function Welcome() {
   const [authCode, setAuth] = useRecoilState(authCodeState)
   const [token, setToken] = useRecoilState(tokenState)
   const [playlist, setPlaylist] = useRecoilState(playlistState)
+  const [playlistId] = useRecoilState(playlistIdState)
   const [players] = useRecoilState(playersState)
   const [readyToPlay, setReadyToPlay] = React.useState(false)
   const navigate = useNavigate()
@@ -44,7 +46,7 @@ export default function Welcome() {
   }, [])
 
   useEffect(() => {
-    if (token) {
+    if (token && playlistId) {
       $api.get(`/playlists/${playlistId}/tracks`).then(({ data }) => {
         setPlaylist(
           data.items.map(
@@ -57,7 +59,7 @@ export default function Welcome() {
         )
       })
     }
-  }, [token])
+  }, [token, playlistId])
 
   useEffect(() => {
     if (playlist && readyToPlay && players.length > 0) {
@@ -75,6 +77,7 @@ export default function Welcome() {
       </h1>
       <strong>{authCode}</strong>
       <AddPlayers />
+      <SetPlaylist />
       <Button
         className="text-2xl mx-auto block text-white px-10 my-1 font-bold"
         onClick={() => setReadyToPlay(true)}

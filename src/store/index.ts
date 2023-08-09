@@ -36,3 +36,9 @@ export const playlistState = atom({
   default: [] as Playlist[]|[],
   effects_UNSTABLE: [persistAtom],
 })
+
+export const playlistIdState = atom({
+  key: 'playlistId',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+})
