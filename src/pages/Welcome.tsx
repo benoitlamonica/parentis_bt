@@ -27,6 +27,7 @@ type ItemInfoTrack = {
 export default function Welcome() {
   const [authCode, setAuth] = useRecoilState(authCodeState)
   const [token, setToken] = useRecoilState(tokenState)
+  const [playlistOk, setPlaylistOk] = React.useState(false)
   const [playlist, setPlaylist] = useRecoilState(playlistState)
   const [playlistId] = useRecoilState(playlistIdState)
   const [players] = useRecoilState(playersState)
@@ -57,12 +58,17 @@ export default function Welcome() {
               } as Playlist)
           )
         )
+
+        setPlaylistOk(true)
+        
+      }).catch(() => {
+        setPlaylistOk(false)
       })
     }
   }, [token, playlistId])
 
   useEffect(() => {
-    if (playlist && readyToPlay && players.length > 0) {
+    if (playlistOk && playlist && readyToPlay && players.length > 0) {
       navigate('/game')
       return
     }
@@ -77,13 +83,24 @@ export default function Welcome() {
       </h1>
       <strong>{authCode}</strong>
       <AddPlayers />
-      <SetPlaylist />
+
+      <SetPlaylist className="mt-2" />
+
       <Button
-        className="text-2xl mx-auto block text-white px-10 my-1 font-bold"
+        className={`text-2xl mx-auto block text-white px-10 my-1 font-bold ${playlistOk ? 'bg-green-500' : 'bg-red-500'} transition-colors duration-200`}
         onClick={() => setReadyToPlay(true)}
+        disabled={!playlistOk}
       >
-        Play
+        Jouer!
       </Button>
+
+      <div className="text-center mt-2">
+        {playlistOk ? (
+          <div className="text-green-500">Playlist valide!</div>
+        ) : (
+          <div className="text-red-500">Playlist inconnue</div>
+        )}
+      </div>
     </div>
   )
 }

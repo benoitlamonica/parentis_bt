@@ -121,9 +121,9 @@ export default function Game() {
           </div>
         </div>
         <div className="flex justify-center items-center gap-2 flex-wrap my-8  mx-auto w-fit">
-          <Button onClick={changeTrack}>Change track</Button>
-          <Button onClick={resetGame}>Reset</Button>
-          <Button onClick={() => navigate('/callback')}>Change Players</Button>
+          <Button onClick={changeTrack}>Changer le morceau</Button>
+          <Button onClick={resetGame}>Reinitialiser</Button>
+          <Button onClick={() => navigate('/callback')}>Reglages</Button>
         </div>
       </div>
     </div>

@@ -3,13 +3,17 @@ import { useRecoilState } from 'recoil'
 import { playlistIdState } from '../store'
 import Input from './Input'
 
-export default function SetPlaylist() {
+export default function SetPlaylist({ className = ''}: { className?: string }) {
   const [playlist, setPlaylist] = useRecoilState(playlistIdState)
 
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPlaylist(e.target.value)
+  }
+
   return ( 
-    <div className='flex items-center gap-2 justify-center'>
+    <div className={`flex flex-col gap-2 p-5 ${className}`}>
       <div>Playlist: </div>
-      <Input value={playlist} onChange={setPlaylist} />
+      <Input value={playlist} onInput={handleInput} className='w-full' />
     </div>
   )
 }

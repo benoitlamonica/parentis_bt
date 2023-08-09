@@ -14,6 +14,7 @@ type AccessToken = {
 export const $credentials = {
   client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID as string,
   client_secret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET as string,
+  redirect_uri: process.env.REACT_APP_SPOTIFY_REDIRECT_URI as string,
 } 
 
 export function useRequestAccessToken(callback: (data: AccessToken) => void) {
@@ -23,7 +24,7 @@ export function useRequestAccessToken(callback: (data: AccessToken) => void) {
   const params = new URLSearchParams({
     grant_type: 'authorization_code',
     code: authCode,
-    redirect_uri: 'https://parentis-bt.netlify.app/callback',
+    redirect_uri: $credentials.redirect_uri,
     client_id: $credentials.client_id,
     code_verifier: localStorage.getItem('codeVerifier') as string,
   })

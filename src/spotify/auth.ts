@@ -56,7 +56,7 @@ export default async function getToken() {
       scope: 'user-read-private user-read-email',
       code_challenge_method: 'S256',
       code_challenge,
-      redirect_uri: 'https://parentis-bt.netlify.app/callback',
+      redirect_uri: process.env.REACT_APP_SPOTIFY_REDIRECT_URI as string,
     },
   )
 }
