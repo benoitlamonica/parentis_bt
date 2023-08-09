@@ -1,1 +1,1 @@
-export const playlistId = '37i9dQZF1DX8C9xQcOrE6T'
+export const playlistId = '2mJrr2tj7uv4POUZsSiOto'
